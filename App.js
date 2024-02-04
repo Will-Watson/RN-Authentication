@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
+import AuthContextProvider from './store/auth-context';
 import { Colors } from './constants/styles';
 
 const Stack = createNativeStackNavigator();
@@ -40,9 +41,11 @@ function AuthenticatedStack() {
 
 function Navigation() {
   return (
+    <AuthContextProvider>
     <NavigationContainer>
       <AuthStack />
     </NavigationContainer>
+    </AuthContextProvider>
   );
 }
 
