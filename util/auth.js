@@ -9,21 +9,23 @@ export const authenticate = async (mode, email, password) => {
     returnSecureToken: true,
   });
 
-  console.log(response.data);
+  const token = response.data.idToken;
+
+  return token;
 };
 
-export const createUser = async (email, password) => {
+export const createUser = (email, password) => {
   try {
-    const response = await authenticate('signUp', email, password);
+    return authenticate('signUp', email, password);
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export const login = async (email, password) => {
+export const login = (email, password) => {
   try {
-    const response = await authenticate('signInWithPassword', email, password);
+    return authenticate('signInWithPassword', email, password);
   } catch (error) {
     throw new Error(error);
   }
-}
+};
