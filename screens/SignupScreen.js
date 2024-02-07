@@ -21,8 +21,8 @@ function SignupScreen() {
         'Could not create user. Please try again later.',
         [{ text: 'Okay' }]
       );
+      setIsAuthenticating(false);
     }
-    setIsAuthenticating(false);
   };
 
   if (isAuthenticating) {

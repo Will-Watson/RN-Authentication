@@ -7,18 +7,22 @@ import { AuthContext } from '../store/auth-context';
 
 function LoginScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const authContext = useContext(AuthContext);
 
   const loginHandler = async ({ email, password }) => {
     setIsAuthenticating(true);
 
-    const authContext = useContext(AuthContext);
     try {
       const token = await login(email, password);
       authContext.authenticate(token);
     } catch (error) {
-      Alert.alert('Authentication Failed!', 'Could not log you in. Please check your credentials or try again later.', [{ text: 'Okay' }]);
+      Alert.alert(
+        'Authentication Failed!',
+        'Could not log you in. Please check your credentials or try again later.',
+        [{ text: 'Okay' }]
+      );
+      setIsAuthenticating(false);
     }
-    setIsAuthenticating(false);
   };
 
   if (isAuthenticating) {
