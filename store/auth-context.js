@@ -11,18 +11,6 @@ export const AuthContext = createContext({
 const AuthContextProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState();
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      const token = await AsyncStorage.getItem('token');
-
-      if (token) {
-        setAuthToken(token);
-      }
-    };
-
-    fetchToken();
-  }, []);
-
   const authenticate = (token) => {
     setAuthToken(token);
     AsyncStorage.setItem('token', token);
