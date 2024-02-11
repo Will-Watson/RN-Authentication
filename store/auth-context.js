@@ -18,6 +18,7 @@ const AuthContextProvider = ({ children }) => {
 
   const logout = () => {
     setAuthToken(null);
+    AsyncStorage.removeItem('token');
   };
 
   const value = {
